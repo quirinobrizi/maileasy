@@ -1,66 +1,40 @@
-/*    */ package eu.codesketch.test.maileasy.infrastructure.repository.matcher;
+package eu.codesketch.test.maileasy.infrastructure.repository.matcher;
 
-/*    */
-/*    */ import java.util.ArrayList;
-/*    */ import java.util.List;
-/*    */ import javax.mail.MessagingException;
-/*    */ import javax.mail.internet.MimeMessage;
-/*    */ import org.springframework.stereotype.Component;
-/*    */ import org.subethamail.wiser.Wiser;
-/*    */ import org.subethamail.wiser.WiserMessage;
+import java.util.ArrayList;
+import java.util.List;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ @Component
-/*    */ public class SubjectEqualsMatcher/*    */ extends AbstractMatcher
-/*    */ {
-	/*    */ public SubjectEqualsMatcher()
-	/*    */ {
-		/* 23 */ super("subject", "equals");
-		/*    */ }
+import javax.mail.MessagingException;
 
-	/*    */
-	/*    */
-	/*    */
-	/*    */
-	/*    */
-	/*    */
-	/*    */
-	/*    */
-	/*    */ public List<WiserMessage> match(Wiser wiser)
-	/*    */ {
-		/* 35 */ List<WiserMessage> answer = new ArrayList();
-		/* 36 */ List<WiserMessage> messages = wiser.getMessages();
-		/* 37 */ for (WiserMessage message : messages) {
-			/*    */ try {
-				/* 39 */ if (message.getMimeMessage().getSubject().equals(getValue())) {
-					/* 40 */ answer.add(message);
-					/*    */ }
-				/*    */ }
-			/*    */ catch (MessagingException localMessagingException) {
+import org.springframework.stereotype.Component;
+import org.subethamail.wiser.Wiser;
+import org.subethamail.wiser.WiserMessage;
+
+@Component
+public class SubjectEqualsMatcher extends AbstractMatcher {
+	public SubjectEqualsMatcher() {
+		super("subject", "equals");
+	}
+
+	@Override
+	public List<WiserMessage> match(Wiser wiser) {
+		List<WiserMessage> answer = new ArrayList<>();
+		List<WiserMessage> messages = wiser.getMessages();
+		for (WiserMessage message : messages) {
+			try {
+				if (message.getMimeMessage().getSubject().equals(getValue())) {
+					answer.add(message);
+				}
+			} catch (MessagingException localMessagingException) {
 			}
-			/*    */ }
-		/*    */
-		/* 46 */ return answer;
-		/*    */ }
+		}
 
-	/*    */
-	/*    */ public Matcher cloneFor(String filter)
-	/*    */ {
-		/* 51 */ SubjectEqualsMatcher answer = new SubjectEqualsMatcher();
-		/* 52 */ answer.setValue(filter.split(":")[1]);
-		/* 53 */ return answer;
-		/*    */ }
-	/*    */ }
+		return answer;
+	}
 
-/*
- * Location:
- * /home/quirino/Projects/maileasy/maileasy/target/classes/!/eu/codesketch/test/
- * maileasy/infrastructure/repository/matcher/SubjectEqualsMatcher.class Java
- * compiler version: 8 (52.0) JD-Core Version: 0.7.1
- */
+	@Override
+	public Matcher cloneFor(String filter) {
+		SubjectEqualsMatcher answer = new SubjectEqualsMatcher();
+		answer.setValue(filter.split(":")[1]);
+		return answer;
+	}
+}

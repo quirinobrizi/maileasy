@@ -1,68 +1,48 @@
-/*    */ package eu.codesketch.test.maileasy.domain.model;
+package eu.codesketch.test.maileasy.domain.model;
 
-/*    */
-/*    */
-/*    */
-/*    */ public class Mail
-/*    */ {
-	/*    */ private String to;
-	/*    */
-	/*    */ private String cc;
-	/*    */
-	/*    */ private String bcc;
-	/*    */
-	/*    */ private String from;
-	/*    */
-	/*    */ private String subject;
-	/*    */
-	/*    */ private String body;
+public class Mail {
+	private String to;
 
-	/*    */
-	/*    */
-	/*    */ public Mail(String to, String cc, String bcc, String from, String subject, String body)
-	/*    */ {
-		/* 22 */ this.to = to;
-		/* 23 */ this.cc = cc;
-		/* 24 */ this.bcc = bcc;
-		/* 25 */ this.from = from;
-		/* 26 */ this.subject = subject;
-		/* 27 */ this.body = body;
-		/*    */ }
+	private String cc;
 
-	/*    */
-	/*    */ public String getTo() {
-		/* 31 */ return this.to;
-		/*    */ }
+	private String bcc;
 
-	/*    */
-	/*    */ public String getCc() {
-		/* 35 */ return this.cc;
-		/*    */ }
+	private String from;
 
-	/*    */
-	/*    */ public String getBcc() {
-		/* 39 */ return this.bcc;
-		/*    */ }
+	private String subject;
 
-	/*    */
-	/*    */ public String getFrom() {
-		/* 43 */ return this.from;
-		/*    */ }
+	private String body;
 
-	/*    */
-	/*    */ public String getSubject() {
-		/* 47 */ return this.subject;
-		/*    */ }
+	public Mail(String to, String cc, String bcc, String from, String subject, String body) {
+		this.to = to;
+		this.cc = cc;
+		this.bcc = bcc;
+		this.from = from;
+		this.subject = subject;
+		this.body = body;
+	}
 
-	/*    */
-	/*    */ public String getBody() {
-		/* 51 */ return this.body;
-		/*    */ }
-	/*    */ }
+	public String getTo() {
+		return this.to;
+	}
 
-/*
- * Location:
- * /home/quirino/Projects/maileasy/maileasy/target/classes/!/eu/codesketch/test/
- * maileasy/domain/model/Mail.class Java compiler version: 8 (52.0) JD-Core
- * Version: 0.7.1
- */
+	public String getCc() {
+		return this.cc;
+	}
+
+	public String getBcc() {
+		return this.bcc;
+	}
+
+	public String getFrom() {
+		return this.from;
+	}
+
+	public String getSubject() {
+		return this.subject;
+	}
+
+	public String getBody() {
+		return this.body;
+	}
+}

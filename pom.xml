@@ -22,7 +22,6 @@
 			<groupId>org.subethamail</groupId>
 			<artifactId>subethasmtp</artifactId>
 			<version>3.1.7</version>
-			<scope>test</scope>
 		</dependency>
 
 		<!-- Test -->
@@ -62,6 +61,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<docker.base.image>java:8</docker.base.image>
 	</properties>
 
 
@@ -70,6 +70,39 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.jolokia</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<configuration>
+					<images>
+						<image>
+							<name>${project.artifactId}</name>
+							<build>
+								<tags>
+									<tag>${project.version}</tag>
+								</tags>
+								<from>${docker.base.image}</from>
+								<maintainer>quirino.brizi@gmail.com</maintainer>
+								<ports>
+									<port>8025</port>
+								</ports>
+								<entryPoint>
+
+									<exec>
+										<arg>java</arg>
+										<arg>-jar</arg>
+										<arg>/maven/${artifactId}.${packaging}</arg>
+									</exec>
+								</entryPoint>
+								<assembly>
+									<mode>dir</mode>
+									<descriptor>assembly.xml</descriptor>
+								</assembly>
+							</build>
+						</image>
+					</images>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
