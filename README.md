@@ -29,7 +29,7 @@ Allows to search e-mails on the SMTP server.
  - contains
  - equals
  
- *Example*
+*Example*
  
 Retrieve all messages who's subject is equals to `abcd`:
 ```bash
