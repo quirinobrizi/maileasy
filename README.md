@@ -9,7 +9,7 @@ docker run -t -d -p 8025:8025 -p 8080:8080 quirinobrizi/maileasy
 
 Using the command above the SMTP connector is exposed on the host on port 8025 and the REST interface is exposed on the host on port 8080.
 
-##REST APISs
+##REST APIs
 
 MailEasy support the following REST APIs.
 
